@@ -1,0 +1,176 @@
+import React, { useState } from "react";
+import { projects } from "../../constants"; // Ensure this path matches your file structure
+
+const Work = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+
+  const handleOpenModal = (project) => {
+    setSelectedProject(project);
+    // Prevent background scrolling when modal is open
+    document.body.style.overflow = "hidden";
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProject(null);
+    // Restore background scrolling
+    document.body.style.overflow = "auto";
+  };
+
+  return (
+    <section
+      id="work"
+      className="py-24 px-[6vw] md:px-[7vw] lg:px-[15vw] font-sans relative"
+    >
+      {/* Background (Optional) */}
+      <div className="absolute top-0 left-0 w-full h-full bg-[#050414] -z-20"></div>
+
+      {/* Section Title */}
+      <div className="mb-16 text-center">
+        <h2 className="text-4xl font-bold tracking-wide text-white sm:text-5xl">
+          MY <span className="text-[#8245ec]">PROJECTS</span>
+        </h2>
+        <div className="w-24 h-1 bg-gradient-to-r from-transparent via-[#8245ec] to-transparent mx-auto mt-4"></div>
+        <p className="max-w-2xl mx-auto mt-6 text-lg text-gray-400">
+          A showcase of my technical projects, featuring Full Stack Architectures, 
+          Backend Systems, and Real-time Applications.
+        </p>
+      </div>
+
+      {/* Projects Grid */}
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            onClick={() => handleOpenModal(project)}
+            className="group relative bg-gray-900/50 backdrop-blur-md border border-white/10 rounded-2xl overflow-hidden cursor-pointer hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(130,69,236,0.3)] hover:border-[#8245ec]/50"
+          >
+            {/* Image Container */}
+            <div className="relative h-48 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+              />
+              {/* Overlay on hover */}
+              <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 bg-black/40 group-hover:opacity-100">
+                <span className="px-4 py-2 font-semibold tracking-wider text-white border rounded-full border-white/50 backdrop-blur-sm">
+                  View Details
+                </span>
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#8245ec] transition-colors">
+                {project.title}
+              </h3>
+              <p className="mb-4 text-sm leading-relaxed text-gray-400 line-clamp-3">
+                {project.description}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.slice(0, 3).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs font-medium text-[#c4a6fb] bg-[#8245ec]/10 px-3 py-1 rounded-full border border-[#8245ec]/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+                {project.tags.length > 3 && (
+                  <span className="px-2 py-1 text-xs font-medium text-gray-500">
+                    +{project.tags.length - 3}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Modal Container */}
+      {selectedProject && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 transition-all bg-black/80 backdrop-blur-sm"
+          onClick={handleCloseModal} // Click outside to close
+        >
+          <div 
+            className="bg-[#0b0b1e] border border-white/10 rounded-2xl shadow-2xl lg:w-full w-[95%] max-w-4xl max-h-[90vh] overflow-y-auto relative animate-blob"
+            onClick={(e) => e.stopPropagation()} // Prevent close when clicking inside modal
+          >
+            {/* Close Button */}
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/50 text-white hover:bg-[#8245ec] transition-colors"
+            >
+              &times;
+            </button>
+
+            <div className="flex flex-col md:flex-row">
+              {/* Modal Image */}
+              <div className="relative w-full h-64 bg-black md:w-1/2 md:h-auto">
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="object-contain w-full h-full"
+                />
+              </div>
+
+              {/* Modal Content */}
+              <div className="flex flex-col w-full p-6 md:p-8 md:w-1/2">
+                <h3 className="mb-4 text-2xl font-bold text-white md:text-3xl">
+                  {selectedProject.title}
+                </h3>
+                
+                <p className="mb-6 text-sm leading-relaxed text-gray-300 md:text-base">
+                  {selectedProject.description}
+                </p>
+
+                <div className="mb-8">
+                  <h4 className="mb-3 font-semibold text-white">Technologies:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-xs md:text-sm font-medium text-[#c4a6fb] bg-[#8245ec]/10 px-3 py-1 rounded-full border border-[#8245ec]/20"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Buttons - Pushed to bottom */}
+                <div className="flex gap-4 mt-auto">
+                  {selectedProject.github && (
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center flex-1 gap-2 py-3 font-semibold text-center text-white transition-colors bg-gray-800 hover:bg-gray-700 rounded-xl"
+                    >
+                      <i className="devicon-github-original"></i> GitHub
+                    </a>
+                  )}
+                  
+                  {/* Only show 'View Live' if the link exists (Good for Backend projects) */}
+                  {selectedProject.webapp && (
+                    <a
+                      href={selectedProject.webapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 bg-[#8245ec] hover:bg-[#6b38c2] text-white py-3 rounded-xl font-semibold text-center transition-colors shadow-lg shadow-[#8245ec]/25"
+                    >
+                      View Code
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  );
+};
+
+export default Work;
