@@ -72,8 +72,8 @@ export const education = [
     img: "https://images.shiksha.com/mediadata/images/1572944321php9y0jK8.jpeg", // PSIT Logo placeholder
     school: "Pranveer Singh Institute of Technology (AKTU)",
     date: "2023 - 2027",
-    grade: "8.23 SGPA",
-    desc: "Currently pursuing a Bachelor of Technology in Computer Science and Engineering. Focusing on Data Structures & Algorithms, Operating Systems, DBMS, and Computer Networks. Ranked in the Top 5% on LeetCode.",
+    grade: "8.01 SGPA (77.4%)",
+    desc: "Currently pursuing a Bachelor of Technology in Computer Science and Engineering. Focusing on Data Structures & Algorithms, Operating Systems, DBMS, and Computer Networks.",
     degree: "B.Tech - Computer Science and Engineering",
   },
   {
@@ -93,7 +93,7 @@ export const projects = [
     title: "ImageGram - Social Media Backend",
     description:
       "A scalable social media backend built with Node.js and Express. Architected using Layered Architecture (Controller-Service-Repository) for maintainability. Features include secure authentication with JWT, media uploads via AWS S3, and optimized performance using Redis caching.",
-    image: "https://cdn.iconscout.com/icon/free/png-256/free-node-js-1174925.png", // Node Placeholder
+    image: "https://media.licdn.com/dms/image/v2/D4E12AQGb8I-pU_LCNQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1713515769251?e=2147483647&v=beta&t=pdCKzwgDLckog3adZs_tHWbL-U_71Ui9BBTchKfoz9A", // Node Placeholder
     tags: ["Node.js", "Express", "MongoDB", "AWS S3", "Redis", "Zod"],
     github: "https://github.com/Hexacoder5678", 
     webapp: "https://github.com/Hexacoder5678", 
@@ -103,18 +103,8 @@ export const projects = [
     title: "Crypto Tracker Dashboard",
     description:
       "A high-performance cryptocurrency dashboard visualizing live market trends. Utilizes TanStack Query for efficient server state management and caching. Features dynamic charting and React Memoization for sub-second data updates.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png", // React Placeholder
+    image: "https://bs-uploads.toptal.io/blackfish-uploads/components/blog_post_page/4087184/cover_image/regular_1708x683/Untitled-c7f4c86ddb44556b00a31a37e4219c3d.png", // React Placeholder
     tags: ["React", "Vite", "TanStack Query", "CoinGecko API"],
-    github: "https://github.com/Hexacoder5678",
-    webapp: "https://github.com/Hexacoder5678",
-  },
-  {
-    id: 2,
-    title: "Kanban Task Manager",
-    description:
-      "A Trello-style task management application featuring complex drag-and-drop functionality. Implements robust client-side persistence using the LocalStorage API to ensure state preservation without backend dependencies.",
-    image: "https://cdn-icons-png.flaticon.com/512/906/906324.png", // Kanban Placeholder
-    tags: ["React", "CSS3", "LocalStorage API"],
     github: "https://github.com/Hexacoder5678",
     webapp: "https://github.com/Hexacoder5678",
   },
